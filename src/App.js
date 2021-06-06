@@ -43,10 +43,17 @@ class App extends Component {
         </nav>
 
         <hr />
-        <button
-          onClick={() => this.setState({ isLoggedIn: !this.state.isLoggedIn })}>
-          LogIn
-        </button>
+        <div style={{ textAlign: 'center' }}>
+          <h3>Is login: {this.state.isLoggedIn ? 'yes' : 'not'}</h3>
+          <button
+            onClick={() =>
+              this.setState(state => ({
+                isLoggedIn: !state.isLoggedIn,
+              }))
+            }>
+            LogIn
+          </button>
+        </div>
         <hr />
 
         <Switch>
@@ -57,7 +64,9 @@ class App extends Component {
           />
           <Route path='/cars' component={Cars} />
           <Route path='/cars/:name' exact component={CarDetail} />
-          <Route path='/about' render={About} />
+          {this.state.isLoggedIn ? (
+            <Route path='/about' render={About} />
+          ) : null}
           <Route path='/contacts'>
             <Contacts />
           </Route>
