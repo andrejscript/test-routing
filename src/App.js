@@ -7,7 +7,13 @@ import Contacts from './Contacts/Contacts';
 import CarDetail from './Cars/CarDetail/CarDetail';
 
 class App extends Component {
+  state = {
+    isLoggedIn: false,
+  };
+
   render() {
+    console.log(this.state.isLoggedIn);
+
     return (
       <div>
         <nav className='nav'>
@@ -36,6 +42,11 @@ class App extends Component {
           </ul>
         </nav>
 
+        <hr />
+        <button
+          onClick={() => this.setState({ isLoggedIn: !this.state.isLoggedIn })}>
+          LogIn
+        </button>
         <hr />
 
         <Switch>
